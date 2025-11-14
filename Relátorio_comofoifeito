@@ -142,3 +142,7 @@ let escolha = readLine() ?? ""
 
 ~ Se o usuário não quiser continuar, o jogo é finalizado.
 Caso o usuário digite qualquer coisa que não seja 1 a 5, o jogo avisa que a escolha não é válida.
+
+
+
+ Portanto, foi elaborado um RPG simples com meus breves conhecimentos sobre o tema e aplicado sobre a linguagem. Por tais circunstâncias, preferi criar com um código simples e objetivo.
