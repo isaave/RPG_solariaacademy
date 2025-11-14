@@ -34,7 +34,7 @@ while estaNoMenu {
     print("1 - Criar Bruxo(A)")
     print("2 - Treinar")
     print("3 - Ver Status")
-    print("4 - Batalhar (Requer nível 3)")
+    print("4 - Batalhar")
     print("5 - Sair")
     print("Escolha: ", terminator: "")
 let escolha = readLine() ?? ""
@@ -89,12 +89,12 @@ let escolha = readLine() ?? ""
 
         if criouGuardiao == false {
             print("Crie seu Bruxo(a) antes de batalhar.")
-        } else if nivel < 3 {
-            print("Seu nível é baixo. Treine até atingir nível 3.")
+        } else if nivel < 19 {
+            print("Seu nível é baixo. Treine até atingir o nível.")
         } else {
 
             print("A batalha começou.")
-~ A batalha é a parte final do jogo. Só pode acontecer se: o personagem existir; ele tiver no mínimo nível 3. Se estiver tudo certo, a luta começa.
+~ A batalha é a parte final do jogo. Só pode acontecer se: o personagem existir; ele tiver no mínimo nível 19. Se estiver tudo certo, a luta começa.
 
             var minhaVida = vida
             var vidaDoInimigo = inimigoVida
@@ -145,4 +145,4 @@ Caso o usuário digite qualquer coisa que não seja 1 a 5, o jogo avisa que a es
 
 
 
- Portanto, foi elaborado um RPG simples com meus breves conhecimentos sobre o tema e aplicado sobre a linguagem. Por tais circunstâncias, preferi criar com um código simples e objetivo.
+ Portanto, foi elaborado um RPG simples com meus breves conhecimentos sobre o tema e aplicado sobre a linguagem. Por tais circunstâncias, preferi criar com um código simples e objetivo em que a real meta é passa uma mensagem sobre os processos de aprendizados ao logo da vida, seja profissional ou emocional/pessoal.
