@@ -1,0 +1,144 @@
+# RPG_solariaacademy
+
+Apresentação de como foi feito:
+Bom, eu nunca se quer joguei um RPG, então deu uma pesquisada e me baseei com séries de magia que assistia quando mais nova, assim criei a Solaria Academy partindo do ideal que é uma escola preparatória para futuros guardiãs estelares. Assim comecei fazendo: 
+
+var nome = ""
+var elemento = ""
+var arma = ""
+var nivel = 1
+var forca = 10
+var energia = 20
+var vida = 30
+
+var criouGuardiao = false
+var estaNoMenu = true
+
+
+var inimigoVida = 30
+var inimigoAtaque = 10
+
+~ no seguinte treicho foi criado as variaveis e os seus valores assim que inicializar o código. Todas var porque elas vão se modificando ao decorrer do código. 
+
+print("Bem-vinda à Solaria Academy!")
+print("Uma antiga e prestigiada escola dedicada ao ensino de magia solar.")
+print("Localizada na galaxia Almedra, onde ha muitas estrelas.")
+print("A academia treina jovens aprendizes para proteger a Luz.")
+
+~ breve apresentação sobre o que é o RPG criado, ou seja a história por tras e o que irá se torna ao decorrer do jogo
+
+while estaNoMenu {
+
+    print("")
+    print("Menu Principal")
+    print("1 - Criar Bruxo(A)")
+    print("2 - Treinar")
+    print("3 - Ver Status")
+    print("4 - Batalhar (Requer nível 3)")
+    print("5 - Sair")
+    print("Escolha: ", terminator: "")
+let escolha = readLine() ?? ""
+~ crie um menu para que o usuario consiga manipular suas ações. Aqui começa o laço while, que mantém o jogador dentro do menu até ele sair. A cada escolha, uma parte diferente do RPG é executada (criar personagem, treinar, batalhar, etc.), readLine() recebe a decisão do usuário.
+
+    if escolha == "1" {
+        print("Nome do seu ou sua Bruxo(a):")
+        nome = readLine() ?? ""
+
+        print("Escolha o elemento (Raio, Fogo, Gases):")
+        elemento = readLine() ?? ""
+
+        print("Escolha a arma (Ondas eletromagneticas, Espada, Arco, Varinha ou Livro de encantos):")
+        arma = readLine() ?? ""
+
+        criouGuardiao = true
+        print("Bruxo criado com sucesso.")
+
+~ seguindo, o usuário dve criar o seu personagem e assim a variavel "crouGardiao" se torna true oq ue permite o usuário de continuar, caso contrário, se o usuário seguir ja ir indo para o treinamento ele será barrado e terá que criar seu personagem já que a variável vai permanecer false. 
+
+    } else if escolha == "2" {
+        if criouGuardiao == false {
+            print("Crie o Bruxo(a) primeiro.")
+        } else {
+            print("Treinando...")
+            nivel += 1
+            forca += 5
+            energia += 5
+            print("Treino concluído. Seu Bruxo(a) subiu para o nível \(nivel).")
+        }
+
+
+~o treinamento é onde o personagem vai criando seu pilares para ir a batalha e se tornar um guardião
+
+} else if escolha == "3" {
+        if criouGuardiao == false {
+            print("Nenhum Bruxo(a) criado ainda.")
+        } else {
+            print("Status do Bruxo(a)")
+            print("Nome: \(nome)")
+            print("Elemento: \(elemento)")
+            print("Arma: \(arma)")
+            print("Nível: \(nivel)")
+            print("Força: \(forca)")
+            print("Energia: \(energia)")
+            print("Vida: \(vida)")
+        }
+~Aqui o jogo mostra os atributos atuais do personagem. Isso serve para o jogador acompanhar sua evolução antes da batalha.
+
+
+    } else if escolha == "4" {
+
+        if criouGuardiao == false {
+            print("Crie seu Bruxo(a) antes de batalhar.")
+        } else if nivel < 3 {
+            print("Seu nível é baixo. Treine até atingir nível 3.")
+        } else {
+
+            print("A batalha começou.")
+~ A batalha é a parte final do jogo. Só pode acontecer se: o personagem existir; ele tiver no mínimo nível 3. Se estiver tudo certo, a luta começa.
+
+            var minhaVida = vida
+            var vidaDoInimigo = inimigoVida
+
+            while minhaVida > 0 && vidaDoInimigo > 0 {
+
+                let meuDano = forca / 2
+                vidaDoInimigo -= meuDano
+
+                print("Você causou \(meuDano) de dano!")
+                print("Vida do inimigo: \(vidaDoInimigo)")
+
+                if vidaDoInimigo <= 0 { break }
+
+                minhaVida -= inimigoAtaque
+                print("O inimigo causou \(inimigoAtaque) de dano!")
+                print("Sua vida: \(minhaVida)")
+
+                print("")
+                sleep(1)
+            }
+~ A batalha funciona em turnos dentro de um loop: O jogador ataca primeiro com metade de sua força. O inimigo perde vida. Se ainda estiver vivo, o inimigo ataca de volta. Esse ciclo continua até alguém chegar a 0 de vida. Foi usado sleep(1) para deixar o combate mais lento e dramático.
+
+            if minhaVida <= 0 {
+                print("Você foi derrotado. O fragmento Estelar cai nas sombras.")
+                estaNoMenu = false
+            } else {
+                print("Vitória! Você derrotou a Corruptora das Sombras.")
+                print("A luz retorna ao Fragmento Estelar.")
+                print("Parabéns \(nome)!! Agora você se tornou um dos Guardiãos de Solaria <3")
+                estaNoMenu = false
+            }
+        }
+
+~ Após o final da batalha: Se a vida do jogador der 0, ele perde. Se derrotar o inimigo, ele vence o jogo e se torna um Guardião de Solaria. O menu é encerrado em ambos os casos.
+
+    } else if escolha == "5" {
+        print("Saindo do jogo.")
+        estaNoMenu = false
+
+    } else {
+        print("Opção inválida.")
+    }
+}
+
+~ Se o usuário não quiser continuar, o jogo é finalizado.
+Caso o usuário digite qualquer coisa que não seja 1 a 5, o jogo avisa que a escolha não é válida.
